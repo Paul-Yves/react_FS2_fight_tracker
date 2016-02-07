@@ -1,0 +1,20 @@
+{
+  "name": "Everworld_fight_tracker",
+  "version": "1.0.0",
+  "description": "using react to make Everworld fight tracker",
+  "main": "index.html",
+  "dependencies": {
+    "react": ">=0.12.0"
+  },
+  "devDependencies": {
+    "browserify": ">=6.2.0",
+    "watchify": ">=2.1.1"
+  },
+  "scripts": {
+    "start": "watchify -t [ babelify --presets [ react ] ] js/main.js -o build/bundle.js -d",
+    "build": "browserify -t [ babelify --presets [ react ] ] js/main.js -o build/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PY",
+  "license": "ISC"
+}
