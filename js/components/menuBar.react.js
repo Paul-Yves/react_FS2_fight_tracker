@@ -4,7 +4,7 @@ var mainDispatcher = require('../store/dispatcher');
 
 var MenuBar = React.createClass({
 	getInitialState: function() {
-		return {text: 'salut'};
+		return {currentFight: null};
 	},
 	componentDidMount: function() {
 		mainDispatcher.register(this);
@@ -24,28 +24,34 @@ var MenuBar = React.createClass({
 			fight: fight
 		});
 	},
+	renameFight: function(){
+		mainDispatcher.notify({
+			type: Actions["RENAMEFIGHT"]
+		});
+	},
 	notify: function(action){
 	    if(action.type == Actions["RefreshFightList"]){
-	        this.setState({'test':'me'});
+			this.state.currentFight = action.currentFight;
+	        this.setState({'refresh':'do'});
 	    }
 	},
 	render : function(){
 		var self = this;
 		var fightsTitle = this.props.fightList.map(function(fight){
+			var isActiveClass = fight == self.state.currentFight ? 'active' : '';
 			return (
-		        <li><a onClick={self.goToFight.bind(null,fight)}>{fight.state.title}</a></li>
+		        <li className={isActiveClass}><a onClick={self.goToFight.bind(null,fight)}>{fight.state.title}</a></li>
       		);
 		});
 		return (
 			<div>
-				<p>{this.state.text}</p>
 				<nav className="navbar navbar-default">
 					<ul className="nav navbar-nav">
 						{fightsTitle}
 					</ul>
 					<ul className="nav navbar-nav navbar-right navButtons">
 						<li><a onClick={this.addFight}>Add Fight</a></li>
-						<li><a>Rename fight</a></li>
+						<li><a onClick={this.renameFight}>Rename fight</a></li>
 						<li><a>Delete current fight</a></li>
 					</ul>
 		      	</nav>
