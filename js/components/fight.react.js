@@ -15,6 +15,7 @@ var Fight = React.createClass({
 	render : function(){
 		return (
 			<div>
+				<h1>{this.state.title}</h1>
 				<p>"I am fight"</p>
 			</div>
 			);
