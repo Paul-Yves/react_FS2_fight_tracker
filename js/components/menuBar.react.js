@@ -40,7 +40,7 @@ var MenuBar = React.createClass({
 		var fightsTitle = this.props.fightList.map(function(fight){
 			var isActiveClass = fight == self.state.currentFight ? 'active' : '';
 			return (
-		        <li className={isActiveClass}><a onClick={self.goToFight.bind(null,fight)}>{fight.state.title}</a></li>
+		        <li className={isActiveClass} key={'fightLink'+fight.id}><a onClick={self.goToFight.bind(null,fight)}>{fight.title}</a></li>
       		);
 		});
 		return (

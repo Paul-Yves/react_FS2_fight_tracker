@@ -16,7 +16,8 @@ var App = React.createClass({
 
 	},
     addFight : function(){
-        var newFight = new Fight();
+		var lastIdx = this.state.fights.length > 0 ? this.state.fights[this.state.fights.length - 1].id : 0;
+        var newFight = {title: 'New Fight', id: lastIdx + 1}
         this.state.fights.push(newFight);
         this.setState({'currentFight': newFight}, function(){
             mainDispatcher.notify({
@@ -43,7 +44,7 @@ var App = React.createClass({
     },
     doRename : function(name){
         console.log("renaming to ", this.state.titleValue);
-        this.state.currentFight.state.title = this.state.titleValue;
+        this.state.currentFight.title = this.state.titleValue;
 
         this.setState({currentFight: this.state.currentFight});
         mainDispatcher.notify({
@@ -63,8 +64,12 @@ var App = React.createClass({
         }
     },
 	render : function(){
-        var currentFightStuff = this.state.currentFight ? this.state.currentFight.render() : <div />;
-        var fightTitle = this.state.currentFight ? this.state.currentFight.state.title : "";
+		var self = this;
+        var currentFightStuff = this.state.fights.map(function(fightInfo){
+			var hiddenClass = self.state.currentFight == fightInfo ? '':'hidden';
+			return <Fight title={fightInfo.title} key={'fight'+fightInfo.id} className={hiddenClass} />;
+		});
+        var fightTitle = this.state.currentFight ? this.state.currentFight.title : "";
 		return (
             <div>
                 <h1>Everworld Fight Tracker</h1>
