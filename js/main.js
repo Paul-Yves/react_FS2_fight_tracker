@@ -92,15 +92,20 @@ var App = React.createClass({
                 <h1>Feng Shui 2 Fight Tracker</h1>
                 <MenuBar fightList={this.state.fights}/>
                 {currentFightStuff}
-                <div className="modal fade" id="renameDialogModal" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel" aria-hidden="true">
+                <div className="modal fade" id="renameDialogModal" tabindex="-1" role="dialog"
+					aria-labelledby="renameModalLabel" aria-hidden="true">
                   <div className="modal-dialog">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" className="close" data-dismiss="modal" 
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
                         <h4 className="modal-title" id="renameModalLabel">Rename {fightTitle}</h4>
                       </div>
                       <div className="modal-body">
-                          <input id="fightRenameField" type="text" placeholder={fightTitle} value={this.state.titleValue} onChange={this.handleTitleChange} />
+                          <input id="fightRenameField" type="text" placeholder={fightTitle}
+						  value={this.state.titleValue} onChange={this.handleTitleChange} />
                       </div>
                       <div className="modal-footer">
                         <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>

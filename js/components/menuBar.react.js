@@ -8,7 +8,6 @@ var MenuBar = React.createClass({
 	},
 	componentDidMount: function() {
 		mainDispatcher.register(this);
-
 	},
 	componentWillUnmount: function() {
 
