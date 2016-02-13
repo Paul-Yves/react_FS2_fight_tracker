@@ -1,7 +1,7 @@
 {
-  "name": "Everworld_fight_tracker",
+  "name": "FengShui2_fight_tracker",
   "version": "1.0.0",
-  "description": "using react to make Everworld fight tracker",
+  "description": "using react to make Feng Shui 2 fight tracker",
   "main": "index.html",
   "dependencies": {
     "react": ">=0.12.0"

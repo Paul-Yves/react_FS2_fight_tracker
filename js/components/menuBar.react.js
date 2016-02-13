@@ -29,6 +29,11 @@ var MenuBar = React.createClass({
 			type: Actions["RENAMEFIGHT"]
 		});
 	},
+	delFight: function(){
+		mainDispatcher.notify({
+			type: Actions["DELETEFIGHT"]
+		});
+	},
 	notify: function(action){
 	    if(action.type == Actions["RefreshFightList"]){
 			this.state.currentFight = action.currentFight;
@@ -52,7 +57,7 @@ var MenuBar = React.createClass({
 					<ul className="nav navbar-nav navbar-right navButtons">
 						<li><a onClick={this.addFight}>Add Fight</a></li>
 						<li><a onClick={this.renameFight}>Rename fight</a></li>
-						<li><a>Delete current fight</a></li>
+						<li><a onClick={this.delFight}>Delete current fight</a></li>
 					</ul>
 		      	</nav>
 			</div>

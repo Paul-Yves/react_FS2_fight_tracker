@@ -39,6 +39,20 @@ var App = React.createClass({
             $('#renameDialogModal').modal('show');
         });
     },
+	deleteFight : function(){
+		if(this.state.currentFight == null){
+			return;
+		}
+		var idx = this.state.fights.indexOf(this.state.currentFight);
+		this.state.fights.splice(idx, 1);
+		idx = idx > 0 ? idx - 1 : 0;
+		this.setState({'currentFight': this.state.fights[idx]}, function(){
+            mainDispatcher.notify({
+                type: "RefreshFightList",
+                currentFight: this.state.currentFight
+            });
+		});
+	},
     handleTitleChange: function(event){
         this.setState({titleValue: event.target.value});
     },
@@ -62,6 +76,9 @@ var App = React.createClass({
         if(action.type == Actions["RENAMEFIGHT"]){
             this.renameFight();
         }
+        if(action.type == Actions["DELETEFIGHT"]){
+            this.deleteFight();
+        }
     },
 	render : function(){
 		var self = this;
@@ -72,7 +89,7 @@ var App = React.createClass({
         var fightTitle = this.state.currentFight ? this.state.currentFight.title : "";
 		return (
             <div>
-                <h1>Everworld Fight Tracker</h1>
+                <h1>Feng Shui 2 Fight Tracker</h1>
                 <MenuBar fightList={this.state.fights}/>
                 {currentFightStuff}
                 <div className="modal fade" id="renameDialogModal" tabindex="-1" role="dialog" aria-labelledby="renameModalLabel" aria-hidden="true">
