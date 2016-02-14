@@ -84,7 +84,7 @@ var App = React.createClass({
 		var self = this;
         var currentFightStuff = this.state.fights.map(function(fightInfo){
 			var hiddenClass = self.state.currentFight == fightInfo ? '':'hidden';
-			return <Fight title={fightInfo.title} key={'fight'+fightInfo.id} className={hiddenClass} />;
+			return <Fight title={fightInfo.title} fightTag={'fight-'+fightInfo.id} key={'fight'+fightInfo.id} className={hiddenClass} />;
 		});
         var fightTitle = this.state.currentFight ? this.state.currentFight.title : "";
 		return (
@@ -97,7 +97,7 @@ var App = React.createClass({
                   <div className="modal-dialog">
                     <div className="modal-content">
                       <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal" 
+                        <button type="button" className="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
