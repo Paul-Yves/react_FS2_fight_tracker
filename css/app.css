@@ -4,3 +4,11 @@ nav li a{
 .hidden{
     display: none;
 }
+
+.shouldAct{
+    background-color: hsla(1, 100%, 55%, 0.53);
+}
+
+.actNow{
+    background-color: hsla(121, 100%, 55%, 0.53);
+}

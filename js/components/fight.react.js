@@ -34,6 +34,17 @@ var Fight = React.createClass({
 
 	},
 	rollInit: function(){
+		var maxShot = 0;
+		this.state.foeList.concat(this.state.mookList).forEach(function(foe){
+			if(!foe.ref){
+				return;
+			}
+			var foeShot = foe.ref.rollInit();
+			if(foeShot > maxShot){
+				maxShot = foeShot;
+			}
+		});
+		this.setState({shot: maxShot});
 
 	},
 	handleChangeSeq: function(event){
@@ -45,10 +56,12 @@ var Fight = React.createClass({
 	render : function(){
 		var self = this;
 		var featFoeCompo = this.state.foeList.map(function(foe){
-			return <FeaturedFoe foeTag={foe.key} key={'foe'+foe.key} fightTag={self.props.fightTag}/>;
+			return <FeaturedFoe foeTag={foe.key} key={'foe'+foe.key} fightTag={self.props.fightTag} currentShot={self.state.shot}
+			ref={function(featfoe){foe.ref=featfoe;}}/>;
 		});
 		var mookCompo = this.state.mookList.map(function(foe){
-			return <Mook foeTag={foe.key} key={'mook'+foe.key} fightTag={self.props.fightTag}/>;
+			return <Mook foeTag={foe.key} key={'mook'+foe.key} fightTag={self.props.fightTag} currentShot={self.state.shot}
+			ref={function(mook){foe.ref=mook;}}/>;
 		});
 		return (
 			<div className={this.props.className}>
