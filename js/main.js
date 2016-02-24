@@ -4,10 +4,12 @@ var Actions = require('./constants/actionsName')
 var mainDispatcher = require('./store/dispatcher');
 var MenuBar = require('./components/menuBar.react');
 var Fight = require('./components/fight.react');
+var RollResult = require('./components/rollResult.react');
 
 var App = React.createClass({
 	getInitialState: function() {
-		return {fights: [], currentFight: null, titleValue:''};
+		var firstFight = {title: 'New Fight', id: 1}
+		return {fights: [firstFight], currentFight: firstFight, titleValue:''};
 	},
 	componentDidMount: function() {
         mainDispatcher.register(this);
@@ -92,6 +94,7 @@ var App = React.createClass({
                 <h1>Feng Shui 2 Fight Tracker</h1>
                 <MenuBar fightList={this.state.fights}/>
                 {currentFightStuff}
+				<RollResult />
                 <div className="modal fade" id="renameDialogModal" tabindex="-1" role="dialog"
 					aria-labelledby="renameModalLabel" aria-hidden="true">
                   <div className="modal-dialog">

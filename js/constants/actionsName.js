@@ -3,7 +3,9 @@ var Action = {
     "RefreshFightList": "RefreshFightList",
     "GOTOFIGHT": "goToFight",
     "RENAMEFIGHT": "renameFight",
-    "DELETEFIGHT": "deleteFight"
+    "DELETEFIGHT": "deleteFight",
+    "DELETEFOE": "deleteFoe",
+    "SHOWRESULT": "diceResult"
 }
 
 module.exports = Action;

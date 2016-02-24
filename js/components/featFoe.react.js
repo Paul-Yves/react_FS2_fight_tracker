@@ -11,11 +11,27 @@ var FeaturedFoe = React.createClass({
 		speed: 7, toughness: 7};
 	},
 	componentDidMount: function() {
-		mainDispatcher.register(this);
 	},
 	componentWillUnmount: function() {
-		mainDispatcher.unregister(this);
 
+	},
+	handleToughnessChange: function(){
+		this.setState({toughness: event.target.value});
+	},
+	rollAttack: function(){
+		mainDispatcher.notify({
+			type: Actions["SHOWRESULT"],
+			foeType: "featFoe",
+			score: [diceLib.fsRoll()+Number(this.state.attack)]
+		});
+	},
+	deleteFoe: function(){
+		mainDispatcher.notify({
+			type: Actions["DELETEFOE"],
+			fightTag: this.props.fightTag,
+			foeType: "featFoe",
+			foeTag: this.props.foeTag
+		});
 	},
     render: function(){
         return <tr className={this.getShotClass()} >
@@ -25,9 +41,9 @@ var FeaturedFoe = React.createClass({
     		  <td>Attack:<input type="number" className="small" value={this.state.attack} onChange={this.handleAttackChange}  /></td>
     		  <td>Defense:<input type="number" className="small" value={this.state.defense} onChange={this.handleDefenseChange}  /></td>
     		  <td>Speed:<input type="number" className="small" value={this.state.speed} onChange={this.handleSpeedChange}  /></td>
-    		  <td>Toughness:<input type="number" className="small" /></td>
-    		  <td><button className="btn btn-sm">Roll</button></td>
-    		  <td><button className="btn btn-sm btn-default"><i className="fa fa-trash"></i></button></td>
+    		  <td>Toughness:<input type="number" className="small" value={this.state.toughness} onChange={this.handleToughnessChange}/></td>
+    		  <td><button className="btn btn-sm" onClick={this.rollAttack}>Roll</button></td>
+    		  <td><button className="btn btn-sm btn-default" onClick={this.deleteFoe}><i className="fa fa-trash"></i></button></td>
           </tr>;;
     }
 

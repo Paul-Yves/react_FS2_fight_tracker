@@ -10,6 +10,7 @@ var diceLib = {
         while(result % 6 == 0){
             result += this.d6();
         }
+        return result;
     },
     fsRoll: function(){
         return this.explodingDice() - this.explodingDice();

@@ -4,7 +4,9 @@ nav li a{
 .hidden{
     display: none;
 }
-
+input.small{
+    width: 5em;
+}
 .shouldAct{
     background-color: hsla(1, 100%, 55%, 0.53);
 }
