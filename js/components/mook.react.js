@@ -23,7 +23,7 @@ var Mook = React.createClass({
     },
 	rollAttack: function(){
 		var score = [];
-		if(this.props.groupRoll){
+		if(this.state.groupRoll){
 			score.push(diceLib.fsRoll()+Number(this.state.attack)+Number(this.state.number)-1);
 		} else {
 			for(var i = 0; i < this.state.number; i++){
