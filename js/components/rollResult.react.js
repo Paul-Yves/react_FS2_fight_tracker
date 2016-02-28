@@ -1,6 +1,7 @@
 var React = require('react');
 var Actions = require('../constants/actionsName')
 var mainDispatcher = require('../store/dispatcher');
+var _ = require('lodash');
 
 var RollResult = React.createClass({
 	getInitialState: function() {
@@ -17,11 +18,19 @@ var RollResult = React.createClass({
         var self = this;
         if(action.type == Actions["SHOWRESULT"]){
             this.setState({rollResults : action.score}, function(){
-                console.log(self.state.rollResults);
                 $('#RollResult').modal('show');
             });
         }
     },
+	collectRoll: function(){
+		var collectedRolls = _.countBy(this.state.rollResults);
+		var sortedRolls = [];
+		_.forIn(collectedRolls, function(value, key) {
+			sortedRolls.push(<tr><td>{key}</td><td>{value}</td></tr>);
+		});
+		_.reverse(sortedRolls);
+		return sortedRolls;
+	},
 	render : function(){
         var result = <div></div>;
         if (this.state.rollResults.length == 1){
@@ -37,6 +46,7 @@ var RollResult = React.createClass({
                         <tr><th>Score</th><th>Occurence</th></tr>
                     </thead>
                     <tbody>
+						{this.collectRoll()}
                     </tbody>
                 </table>
             </div>;
