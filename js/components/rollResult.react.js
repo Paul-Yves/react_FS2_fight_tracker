@@ -26,10 +26,14 @@ var RollResult = React.createClass({
 		var collectedRolls = _.countBy(this.state.rollResults);
 		var sortedRolls = [];
 		_.forIn(collectedRolls, function(value, key) {
-			sortedRolls.push(<tr><td>{key}</td><td>{value}</td></tr>);
+			sortedRolls.push({key: key, value: value});
 		});
-		_.reverse(sortedRolls);
-		return sortedRolls;
+		sortedRolls.sort(function(a,b){
+			return Number(b.key) - Number(a.key);
+		});
+		return sortedRolls.map(function(entry){
+			return (<tr><td>{entry.key}</td><td>{entry.value}</td></tr>);
+		});
 	},
 	render : function(){
         var result = <div></div>;

@@ -14,3 +14,24 @@ input.small{
 .actNow{
     background-color: hsla(121, 100%, 55%, 0.53);
 }
+
+.hidden{
+    display: none;
+}
+.margLeft{
+    margin-left: 1em;
+}
+
+label.chLabel{
+    margin-left: 1em;
+    padding: 0.25em;
+    border : solid 2px red;
+    background-color: #d8a4a4;
+    border-radius: 3px;
+}
+label.chLabel:hover{
+    background-color: #ed6a6a;
+}
+label.chLabel.checked{
+    border : solid 2px #b73539;
+}
