@@ -47,7 +47,7 @@ var MookCar = React.createClass({
     		  <td>Handling:<input type="number" className="small" value={this.state.handling} onChange={this.handleHandlingChange}  /></td>
     		  <td>Frame:<input type="number" className="small" value={this.state.frame} onChange={this.handleFrameChange}/></td>
 			  {this.paintPosition()}
-    		  <td><button className="btn btn-sm" onClick={this.rollAttack}>Roll</button></td>
+    		  <td><button className="btn btn-sm btn-default" onClick={this.rollAttack}>Roll</button></td>
     		  <td><button className="btn btn-sm btn-default" onClick={this.deleteFoe}><i className="fa fa-trash"></i></button></td>
           </tr>;;
     }

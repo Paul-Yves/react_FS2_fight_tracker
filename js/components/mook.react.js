@@ -53,7 +53,7 @@ var Mook = React.createClass({
     		  <td>Defense:<input type="number" className="small" value={this.state.defense} onChange={this.handleDefenseChange}  /></td>
     		  <td>Speed:<input type="number" className="small" value={this.state.speed} onChange={this.handleSpeedChange}  /></td>
     		  <td>Group roll:<input type="checkbox" className="small" checked={this.state.groupRoll} onChange={this.handleGroupRoll}/></td>
-    		  <td><button className="btn btn-sm" onClick={this.rollAttack}>Roll</button></td>
+    		  <td><button className="btn btn-sm btn-default" onClick={this.rollAttack}>Roll</button></td>
     		  <td><button className="btn btn-sm btn-default" onClick={this.deleteFoe}><i className="fa fa-trash"></i></button></td>
           </tr>;
     }
