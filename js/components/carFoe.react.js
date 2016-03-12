@@ -24,6 +24,7 @@ var CarFoe = React.createClass({
 			foeType: "featFoe",
 			score: [diceLib.fsRoll()+Number(this.state.driving)]
 		});
+		this.reduceShot();
 	},
 	deleteFoe: function(){
 		mainDispatcher.notify({

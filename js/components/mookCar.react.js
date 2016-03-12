@@ -28,6 +28,7 @@ var MookCar = React.createClass({
 			foeType: "mook",
 			score: score
 		});
+		this.reduceShot();
 	},
 	deleteFoe: function(){
 		mainDispatcher.notify({

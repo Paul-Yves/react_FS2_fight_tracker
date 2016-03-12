@@ -24,6 +24,7 @@ var FeaturedFoe = React.createClass({
 			foeType: "featFoe",
 			score: [diceLib.fsRoll()+Number(this.state.attack)]
 		});
+		this.reduceShot();
 	},
 	deleteFoe: function(){
 		mainDispatcher.notify({

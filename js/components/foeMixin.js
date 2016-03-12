@@ -22,6 +22,13 @@ var foeMixin = {
         this.setState({shot: newShot});
         return newShot;
     },
+    reduceShot: function(reduction){
+        if(reduction === undefined){
+            reduction = 3;
+        }
+        var newVal = Math.max(0, this.state.shot - reduction);
+        this.setState({shot: newVal});
+    },
     getShotClass: function(){
 		var shotClass = "";
 		if(this.props.currentShot == this.state.shot){
