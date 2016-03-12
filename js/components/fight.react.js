@@ -47,7 +47,7 @@ var Fight = React.createClass({
 	addMookVehicle: function(){
 		var key = 1;
 		if(this.state.mookCarList.length>0){
-			key = this.state.mookCarList[this.state.mookCarListList.length - 1].key + 1;
+			key = this.state.mookCarList[this.state.mookCarList.length - 1].key + 1;
 		}
 		this.state.mookCarList.push({key: key});
         this.setState({'mookCarList': this.state.mookCarList});

@@ -15,8 +15,8 @@ var MookCar = React.createClass({
 	componentWillUnmount: function() {
 
 	},
-	handleNumberChange: function(){
-		this.setState({number: Number(event.target.value)});
+	handleNumberChange: function(event){
+        this.setState({number: event.target.value});
 	},
 	rollAttack: function(){
 		var score = [];
