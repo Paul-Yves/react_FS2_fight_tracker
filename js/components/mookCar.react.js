@@ -4,32 +4,36 @@ var mainDispatcher = require('../store/dispatcher');
 var diceLib = require('../helper/diceLib');
 var carMixin = require('./carMixin');
 
-var CarFoe = React.createClass({
+var MookCar = React.createClass({
 	mixins: [carMixin],
 	getInitialState: function() {
-		return {shot: 0, name:"New Car", chasePoint: 0, driving: 12, defense: 13,
-		speed: 8, frame: 7, handling: 7, position: "far"};
+		return {shot: 0, name:"New Car", number: 3, driving: 8, defense: 13,
+		speed: 6, frame: 6, handling: 6, position: "far"};
 	},
 	componentDidMount: function() {
 	},
 	componentWillUnmount: function() {
 
 	},
-	handleChasePointChange: function(){
-		this.setState({chasePoint: event.target.value});
+	handleNumberChange: function(){
+		this.setState({number: Number(event.target.value)});
 	},
 	rollAttack: function(){
+		var score = [];
+		for(var i = 0; i < this.state.number; i++){
+			score.push(diceLib.fsRoll()+Number(this.state.driving));
+		}
 		mainDispatcher.notify({
 			type: Actions["SHOWRESULT"],
-			foeType: "featFoe",
-			score: [diceLib.fsRoll()+Number(this.state.driving)]
+			foeType: "mook",
+			score: score
 		});
 	},
 	deleteFoe: function(){
 		mainDispatcher.notify({
 			type: Actions["DELETEFOE"],
 			fightTag: this.props.fightTag,
-			foeType: "car",
+			foeType: "mookCar",
 			foeTag: this.props.foeTag
 		});
 	},
@@ -37,7 +41,7 @@ var CarFoe = React.createClass({
         return <tr className={this.getShotClass()} >
     		  <td><input type="text" value={this.state.name} onChange={this.handleNameChange}/></td>
     		  <td>Shot:<input type="number" className="small" value={this.state.shot} onChange={this.handleShotChange}  /></td>
-    		  <td>Chase points:<input type="number" className="small" value={this.state.chasePoint} onChange={this.handleChasePointChange} /></td>
+    		  <td>Number:<input type="number" className="small" value={this.state.number} onChange={this.handleNumberChange} /></td>
     		  <td>Driving:<input type="number" className="small" value={this.state.driving} onChange={this.handleDrivingChange}  /></td>
     		  <td>Acceleration:<input type="number" className="small" value={this.state.speed} onChange={this.handleSpeedChange}  /></td>
     		  <td>Handling:<input type="number" className="small" value={this.state.handling} onChange={this.handleHandlingChange}  /></td>
@@ -50,4 +54,4 @@ var CarFoe = React.createClass({
 
 });
 
-module.exports = CarFoe;
+module.exports = MookCar;

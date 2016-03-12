@@ -1,6 +1,12 @@
 nav li a{
     cursor: pointer;
 }
+table.table.fightTable{
+    margin-top: 0.5em;
+}
+table.table.fightTable td{
+    vertical-align: middle;
+}
 .hidden{
     display: none;
 }

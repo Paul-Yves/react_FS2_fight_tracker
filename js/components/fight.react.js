@@ -5,6 +5,7 @@ var diceLib = require('../helper/diceLib');
 var Mook = require('./mook.react');
 var FeaturedFoe = require('./featFoe.react');
 var CarFoe = require('./carFoe.react');
+var MookCar = require('./mookCar.react');
 
 var Fight = React.createClass({
 	getInitialState: function() {
@@ -46,14 +47,15 @@ var Fight = React.createClass({
 	addMookVehicle: function(){
 		var key = 1;
 		if(this.state.mookCarList.length>0){
-			key = this.state.mookCarList[this.state.mookmookCarListList.length - 1].key + 1;
+			key = this.state.mookCarList[this.state.mookCarListList.length - 1].key + 1;
 		}
 		this.state.mookCarList.push({key: key});
         this.setState({'mookCarList': this.state.mookCarList});
 	},
 	rollInit: function(){
 		var maxShot = 0;
-		this.state.foeList.concat(this.state.mookList).forEach(function(foe){
+		this.state.foeList.concat(this.state.mookList).concat(this.state.carList)
+		.concat(this.state.mookCarList).forEach(function(foe){
 			if(!foe.ref){
 				return;
 			}
@@ -76,6 +78,11 @@ var Fight = React.createClass({
 	},
 	removeFoe: function(action){
 		var foeArray = action.foeType == "mook" ? this.state.mookList : this.state.foeList;
+		if(action.foeType == "car"){
+			foeArray = this.state.carList;
+		} else if (action.foeType == "mookCar"){
+			foeArray = this.state.mookCarList;
+		}
 		var foeIdx = -1;
 		foeArray.forEach(function(foe, idx){
 			if(foe.key == action.foeTag){
@@ -85,7 +92,8 @@ var Fight = React.createClass({
 		if(foeIdx > -1){
 			foeArray.splice(foeIdx, 1);
 		}
-		this.setState({'foeList': this.state.foeList, 'mookList': this.state.mookList});
+		this.setState({'foeList': this.state.foeList, 'mookList': this.state.mookList,
+			'carList': this.state.carList, 'mookCarList': this.state.mookCarList});
 	},
     notify : function(action){
         if(action.type == Actions["DELETEFOE"]){
@@ -108,6 +116,10 @@ var Fight = React.createClass({
 			return <CarFoe foeTag={foe.key} key={'car'+foe.key} fightTag={self.props.fightTag} currentShot={self.state.shot}
 			ref={function(car){foe.ref=car;}}/>;
 		});
+		var mookCarCompo = this.state.mookCarList.map(function(foe){
+			return <MookCar foeTag={foe.key} key={'mookCar'+foe.key} fightTag={self.props.fightTag} currentShot={self.state.shot}
+			ref={function(car){foe.ref=car;}}/>;
+		});
 		var chaseHidden = this.state.carChase ? "" : "hidden";
 		var chLabel = this.state.carChase ? "margLeft btn btn-warning" : "margLeft btn btn-danger";
 		return (
@@ -120,8 +132,10 @@ var Fight = React.createClass({
 				<label>Sequence:<input type="number" value={this.state.sequence} onChange={this.handleChangeSeq} /></label>
 				<label>Shot:<input type="number" value={this.state.shot} onChange={this.handleChangeSeg} /></label>
 				<button onClick={this.rollInit} className={this.state.shot>0?'btn btn-info':'btn btn-success'}>Roll initiative</button>
-				<label className={chLabel}><input type="checkbox" checked={this.state.carChase} onClick={this.handleChase}/>Car chase</label>
-				<table className="table">
+				<label className={chLabel}>
+					<input type="checkbox" className="hidden" checked={this.state.carChase} onClick={this.handleChase}/>Car chase
+				</label>
+				<table className="table fightTable">
 					<tbody>
 						{featFoeCompo}
 						{mookCompo}
@@ -134,9 +148,10 @@ var Fight = React.createClass({
 						<button onClick={this.addMookVehicle} className="btn btn-primary">Add Mook Vehicle</button>
 					</div>
 
-					<table className="table">
+					<table className="table fightTable">
 						<tbody>
 							{carCompo}
+							{mookCarCompo}
 						</tbody>
 					</table>
 				</div>

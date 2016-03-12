@@ -1,3 +1,4 @@
+var React = require('react');
 var diceLib = require('../helper/diceLib');
 
 var carMixin = {
@@ -21,7 +22,7 @@ var carMixin = {
         this.setState({frame: event.target.value});
     },
     rollInit: function(){
-        var newShot = diceLib.d6() + this.state.speed;
+        var newShot = diceLib.d6() + Number(this.state.speed);
         this.setState({shot: newShot});
         return newShot;
     },
@@ -33,7 +34,39 @@ var carMixin = {
 			shotClass = "shouldAct";
 		}
         return shotClass;
-    }
+    },
+	handlePosChange: function(event){
+		this.setState({position: event.target.value});
+	},
+	posButtonClass: function(pos){
+		if(pos == this.state.position){
+			return "btn btn-primary";
+		}
+		return "btn btn-default";
+	},
+	paintPosition: function(){
+		return (
+			<td>
+			  <div className="btn-group" >
+				<label className={this.posButtonClass("far")}>
+				  <input type="radio" name="position" className="hidden" id="far"
+				  value="far" onChange={this.handlePosChange}
+					  checked={this.state.position=="far"}/> Far
+				</label>
+				<label className={this.posButtonClass("near")} >
+				  <input type="radio" name="position" className="hidden" id="near"
+				  value="near" onChange={this.handlePosChange}
+					  checked={this.state.position=="near"} /> Near
+				</label>
+				<label className={this.posButtonClass("evader")} >
+				  <input type="radio" name="position" className="hidden" id="evader"
+				  value="evader" onChange={this.handlePosChange}
+					  checked={this.state.position=="evader"} /> Evader
+				</label>
+			  </div>
+			</td>
+		);
+	}
 }
 
 module.exports = carMixin;
