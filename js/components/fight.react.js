@@ -131,7 +131,7 @@ var Fight = React.createClass({
 				</div>
 				<label>Sequence:<input type="number" value={this.state.sequence} onChange={this.handleChangeSeq} /></label>
 				<label>Shot:<input type="number" value={this.state.shot} onChange={this.handleChangeSeg} /></label>
-				<button onClick={this.rollInit} className={this.state.shot>0?'btn btn-info':'btn btn-success'}>Roll initiative</button>
+				<button onClick={this.rollInit} className={this.state.shot>0?'margLeft btn btn-info':'margLeft btn btn-success'}>Roll initiative</button>
 				<label className={chLabel}>
 					<input type="checkbox" className="hidden" checked={this.state.carChase} onClick={this.handleChase}/>Car chase
 				</label>
