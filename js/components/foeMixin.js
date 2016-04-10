@@ -14,7 +14,7 @@ var foeMixin = {
     handleAttackChange: function(event) {
         this.setState({attack: event.target.value});
     },
-    handleDefChange: function(event) {
+    handleDefenseChange: function(event) {
         this.setState({defense: event.target.value});
     },
     rollInit: function(){
