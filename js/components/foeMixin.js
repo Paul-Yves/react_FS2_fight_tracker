@@ -18,7 +18,7 @@ var foeMixin = {
         this.setState({defense: event.target.value});
     },
     rollInit: function(){
-        var newShot = diceLib.d6() + this.state.speed;
+        var newShot = diceLib.d6() + Number(this.state.speed);
         this.setState({shot: newShot});
         return newShot;
     },
