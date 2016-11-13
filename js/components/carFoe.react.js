@@ -35,7 +35,7 @@ var CarFoe = React.createClass({
 		});
 	},
     render: function(){
-        return <tr className={this.getShotClass()} >
+        return (<tr className={this.getShotClass()} >
     		  <td><input type="text" value={this.state.name} onChange={this.handleNameChange}/></td>
     		  <td>Shot:<input type="number" className="small" value={this.state.shot} onChange={this.handleShotChange}  /></td>
     		  <td>Chase points:<input type="number" className="small" value={this.state.chasePoint} onChange={this.handleChasePointChange} /></td>
@@ -46,7 +46,7 @@ var CarFoe = React.createClass({
 			  {this.paintPosition()}
     		  <td><button className="btn btn-sm btn-default" onClick={this.rollAttack}>Roll</button></td>
     		  <td><button className="btn btn-sm btn-default" onClick={this.deleteFoe}><i className="fa fa-trash"></i></button></td>
-          </tr>;;
+          </tr>);
     }
 
 });

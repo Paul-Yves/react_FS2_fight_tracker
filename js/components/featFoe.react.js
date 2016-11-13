@@ -15,7 +15,7 @@ var FeaturedFoe = React.createClass({
 	componentWillUnmount: function() {
 
 	},
-	handleToughnessChange: function(){
+	handleToughnessChange: function(event){
 		this.setState({toughness: event.target.value});
 	},
 	rollAttack: function(){
@@ -35,7 +35,7 @@ var FeaturedFoe = React.createClass({
 		});
 	},
     render: function(){
-        return <tr className={this.getShotClass()} >
+        return (<tr className={this.getShotClass()} >
     		  <td><input type="text" value={this.state.name} onChange={this.handleNameChange}/></td>
     		  <td>Shot:<input type="number" className="small" value={this.state.shot} onChange={this.handleShotChange}  /></td>
     		  <td>Wounds:<input type="number" className="small" /></td>
@@ -45,7 +45,7 @@ var FeaturedFoe = React.createClass({
     		  <td>Toughness:<input type="number" className="small" value={this.state.toughness} onChange={this.handleToughnessChange}/></td>
     		  <td><button className="btn btn-sm btn-default" onClick={this.rollAttack}>Roll</button></td>
     		  <td><button className="btn btn-sm btn-default" onClick={this.deleteFoe}><i className="fa fa-trash"></i></button></td>
-          </tr>;;
+          </tr>);
     }
 
 });
